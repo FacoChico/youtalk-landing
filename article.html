@@ -538,23 +538,39 @@
     (function () {
         var btn = document.querySelector('.header__adaptive-link');
         var menu = document.querySelector('.header__adaptive-container');
+        var headerEl = document.querySelector('header');
         var materialsLi = document.querySelector('.header__navbar > ul > li:nth-last-of-type(2)');
         var materialsLink = materialsLi ? materialsLi.querySelector('a') : null;
 
+        function openMenu() {
+            menu.classList.add('active');
+            if (headerEl) {
+                headerEl.classList.add('menu-open');
+            }
+        }
+
+        function closeMenu() {
+            menu.classList.remove('active');
+            if (headerEl) {
+                headerEl.classList.remove('menu-open');
+            }
+            if (materialsLi) {
+                materialsLi.classList.remove('open');
+            }
+        }
+
         if (btn && menu) {
             btn.addEventListener('click', function () {
-                menu.classList.toggle('active');
-                if (materialsLi) {
-                    materialsLi.classList.remove('open');
+                if (menu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
                 }
             });
 
             window.addEventListener('resize', function () {
                 if (getComputedStyle(btn).display === 'none') {
-                    menu.classList.remove('active');
-                    if (materialsLi) {
-                        materialsLi.classList.remove('open');
-                    }
+                    closeMenu();
                 }
             });
         }
@@ -564,6 +580,12 @@
                 if (menu.classList.contains('active')) {
                     e.preventDefault();
                     materialsLi.classList.toggle('open');
+                }
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!materialsLi.contains(e.target)) {
+                    materialsLi.classList.remove('open');
                 }
             });
         }

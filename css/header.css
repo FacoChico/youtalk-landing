@@ -104,11 +104,8 @@ button:focus-visible {
     position: relative;
 }
 
-.header__navbar > ul > li:nth-last-of-type(2):hover .header__dropdown {
-    display: block;
-}
-
-.header__navbar > ul > li:nth-last-of-type(2):active .header__dropdown {
+.header__navbar > ul > li:nth-last-of-type(2):hover .header__dropdown,
+.header__navbar > ul > li:nth-last-of-type(2).open .header__dropdown {
     display: block;
 }
 
@@ -133,9 +130,6 @@ button:focus-visible {
     overflow-y: auto;
 }
 
-.header__adaptive-container.active .header__dropdown {
-    display: none !important;
-}
 
 .header__adaptive-container.active .header__navbar > ul > li:nth-last-of-type(2).open .header__dropdown {
     display: block !important;
