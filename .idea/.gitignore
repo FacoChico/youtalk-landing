@@ -1,0 +1,12 @@
+# default
+/shelf/
+/workspace.xml
+
+# default folder with query files
+/queries/
+
+# datasource local storage files
+/dataSources/
+/dataSources.local.xml
+
+/httpRequests/
